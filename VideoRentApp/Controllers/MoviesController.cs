@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using VideoRentApp.Models;
+using VideoRentApp.ViewModels;
 
 namespace VideoRentApp.Controllers
 {
@@ -26,7 +27,19 @@ namespace VideoRentApp.Controllers
         public ActionResult Random()
         {
             var movie = new Movie() { Name = "Shrek!" };
-            return new ViewResult();
+            var customers = new List<Customer>
+            {
+                new Customer { Name = "Customer1" },
+                new Customer { Name = "Customer2" }
+            };
+
+            var viewModel = new RandomMovieViewModel
+            {
+                Movie = movie,
+                Customers = customers
+            };
+
+            return View(viewModel);
         }
 
         // GET: movies/released/{year}/{month}
